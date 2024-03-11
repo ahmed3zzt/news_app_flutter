@@ -7,8 +7,6 @@ class NewsItem extends StatelessWidget {
     required this.article,
   });
   final ArticleModel article;
-  final String defaultImageUrl =
-      'https://img.freepik.com/free-vector/female-hands-holding-mobile-phone-with-newsletter-screen-woman-reading-world-news-using-smartphone-app-internet-flat-vector-illustration-newspaper-information-press-media-concept_74855-24529.jpg?w=1380&t=st=1710155702~exp=1710156302~hmac=b0331d380bfb91390a62d10ff6000caa4fead562a8576c5edd9047b3d2159892';
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,16 +14,35 @@ class NewsItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Container(
-            height: 250,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              image: DecorationImage(
-                image: NetworkImage(article.image ?? defaultImageUrl),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
+          article.image == null
+              ? Container(
+                  height: 250,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: const Center(
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text('News'),
+                        Text(
+                          'Cloud',
+                          style: TextStyle(color: Colors.orange),
+                        )
+                      ],
+                    ),
+                  ),
+                )
+              : Container(
+                  height: 250,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    image: DecorationImage(
+                      image: NetworkImage(article.image!),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
           const SizedBox(
             height: 10,
           ),
