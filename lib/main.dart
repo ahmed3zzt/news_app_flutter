@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/views/home.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MainApp());
 }
 
@@ -9,11 +12,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: const Home(),
+      title: 'News App',
+      theme: ThemeData(
+        textTheme: GoogleFonts.cairoTextTheme(),
       ),
     );
   }
